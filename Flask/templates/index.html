@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ML API</title>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Allerta+Stencil" type='text/css' />
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+    body {
+    background: rgb(2,0,36);
+    background: linear-gradient(74deg, rgba(2,0,36,1) 0%, rgba(139,120,58,1) 72%, rgba(0,212,255,1) 100%);
+    height:100vh;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+
+</head>
+
+<body>
+
+    <br>
+    <div class="w3-panel w3-black w3-container w3-center w3-animate-top w3-animate-fading w3-card-4">
+      <h1 class="w3-text-white" style="text-shadow:1px 1px 0 #444">
+      <b>CKD PREDICTION</b></h1>
+    </div>
+
+	
+     <!-- Main Input For Receiving Query to our ML -->
+    <center>
+    <form action="{{ url_for('y_predict')}}"method="post">
+        <div class="w3-container w3-center w3-animate-left">
+        <h1 class="w3-text-white" style="text-shadow:1px 1px 0 #444">KINDLY FILL IN THE CORRESPONDING VALUES</h1>
+        </div>
+
+    	<input type="text" name="age" placeholder="Age" required="required" />
+        <input type="text" name="bp" placeholder="Blood Pressure" required="required" />
+		<input type="text" name="sg" placeholder="Specific Gravity" required="required" />
+		<input type="text"  name="al" placeholder="Albumin" required="required" />
+		<input type="text" name="su" placeholder="Sugar" required="required" />
+		<label><input list="normal"  type="text" name="rbc" placeholder="Red Blood Cells" required="required"></label>
+		<br>
+		<br>
+		<br>
+		<label><input list="normal"  type="text" name="pc" placeholder="Pus Cells" required="required"></label>
+		<label><input list="present" type="text" name="pcc" placeholder="Pus Cell Clumps" required="required"></label>
+		<label><input list="present" type="text" name="ba" placeholder="Bacteria" required="required"></label>
+		<input type="text" name="bgr" placeholder="Blood Glucose Random" required="required" />
+		<input type="text" name="bu" placeholder="Blood Urea" required="required" />
+		<input type="text" name="sc" placeholder="Serum Creatine" required="required" />
+		<br>
+		<br>
+		<br>
+		<input type="text" name="sod" placeholder="Sodium" required="required" />
+		<input type="text" name="pot" placeholder="Potassium" required="required" />
+		<input type="text" name="hemo" placeholder="Haemoglobin" required="required" />
+		<input type="text" name="pcv" placeholder="Packed Cell Volume" required="required" />
+		<input type="text" name="wc" placeholder="White Blood Cell Count" required="required" />
+		<input type="text" name="rc" placeholder="Red Blood Cell Count" required="required" />
+		<br>
+		<br>
+		<br>
+		<label><input list="yesorno"  type="text" name="htn" placeholder="Hypertension" required="required"></label>
+		<label><input list="yesorno"  type="text" name="dm" placeholder="Diabetes Mellitus" required="required"></label>
+		<label><input list="yesorno"  type="text" name="cad" placeholder="Coronary Artery Disease" required="required"></label>
+		<label><input list="goodorpoor"  type="text" name="appet" placeholder="Appetite" required="required"></label>
+		<label><input list="yesorno"  type="text" name="pe" placeholder="Pedal Edema" required="required"></label>
+		<label><input list="yesorno"  type="text" name="ane" placeholder="Anemia" required="required"></label>
+		<br>
+		
+
+<datalist id="yesorno" >
+   <option value="1">Yes</option>
+   <option value="0">No</option>
+ </datalist>
+ <datalist id="goodorpoor" >
+    <option value="1">Good</option>
+    <option value="0">Poor</option>
+  </datalist>
+  <datalist id="present" >
+     <option value="1">Present</option>
+     <option value="0">Absent</option>
+   </datalist>
+   <datalist id="normal" >
+      <option value="1">Normal</option>
+      <option value="0">Abnormal</option>    </datalist>		
+        
+        <p><button  type="submit" style="width:20%" class="w3-button w3-block w3-black w3-round-xxlarge w3-border-white w3-round-large"><b>PREDICT</b></button></p>
+                
+        </div>
+    </form>
+    </center>
+<div>
+    <center>
+    
+  <h1 class="w3-text-red">{{ prediction_text }}</h1>
+  </center>
+</div>
+<div class="w3-panel w3-cyan w3-card-4 w3-animate-fading w3-center">
+    <p><b>This condition is persistent but so is our will. BE STRONG. </b></p>
+  </div>
+</body>
+</html>
